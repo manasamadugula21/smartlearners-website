@@ -3,11 +3,14 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FaChevronLeft, FaChevronRight, FaCheckCircle } from 'react-icons/fa'
+import { useUserType } from '@/contexts/UserTypeContext'
 
 const Features = () => {
+  const { userType } = useUserType()
   const [currentIndex, setCurrentIndex] = useState(0)
 
-  const carouselFeatures = [
+  // Features for Parents/Students
+  const parentFeatures = [
     // 1. SELF STUDY (01)
     {
       title: 'Self-Study Learning Cycle',
@@ -159,6 +162,121 @@ const Features = () => {
     }
   ]
 
+  // Features for Schools
+  const schoolFeatures = [
+    {
+      title: 'Comprehensive Exam Analysis',
+      subtitle: 'Get detailed insights into student performance across your entire institution.',
+      icon: '📊',
+      number: '01',
+      videoPlaceholder: '/school-analysis.mp4',
+      benefits: [
+        'Class-wise performance comparison',
+        'Section-wise analytics and rankings',
+        'Chapter-wise gap identification',
+        'Subject-wise strength and weakness mapping',
+        'Individual student performance tracking',
+        'Trend analysis over multiple exams'
+      ],
+      whyItHelps: 'Make data-driven decisions to improve overall school performance and identify areas needing attention.',
+      gradient: 'from-purple-500 via-pink-500 to-red-500',
+      accentColor: 'purple'
+    },
+    {
+      title: 'Bulk Exam Correction',
+      subtitle: 'AI-powered automatic correction for entire classes in minutes.',
+      icon: '✅',
+      number: '02',
+      videoPlaceholder: '/bulk-correction.mp4',
+      benefits: [
+        'Upload answer sheets for entire class at once',
+        'Automatic evaluation with consistent marking',
+        'Instant results for all students',
+        'Detailed mistake analysis for each student',
+        'Save hundreds of hours in manual correction',
+        'Export reports in various formats'
+      ],
+      whyItHelps: 'Free up teacher time for actual teaching instead of repetitive correction work.',
+      gradient: 'from-blue-500 via-indigo-500 to-purple-500',
+      accentColor: 'blue'
+    },
+    {
+      title: 'Teacher Dashboard',
+      subtitle: 'Centralized control panel for managing classes, assignments, and performance.',
+      icon: '👨‍🏫',
+      number: '03',
+      videoPlaceholder: '/teacher-dashboard.mp4',
+      benefits: [
+        'Create and assign custom worksheets',
+        'Monitor student progress in real-time',
+        'View class-wise completion rates',
+        'Identify struggling students instantly',
+        'Generate performance reports',
+        'Track homework and classwork submissions'
+      ],
+      whyItHelps: 'Complete visibility into every classroom activity with actionable insights.',
+      gradient: 'from-green-500 via-teal-500 to-cyan-500',
+      accentColor: 'green'
+    },
+    {
+      title: 'Gap Analysis & Remedial Planning',
+      subtitle: 'Identify learning gaps and get AI-recommended remedial strategies.',
+      icon: '🎯',
+      number: '04',
+      videoPlaceholder: '/gap-analysis.mp4',
+      benefits: [
+        'Chapter-wise gap identification for each student',
+        'Concept-level weakness detection',
+        'AI-generated remedial lesson plans',
+        'Personalized practice recommendations',
+        'Progress tracking on improvement areas',
+        'Group students by similar gaps for targeted teaching'
+      ],
+      whyItHelps: 'Ensure no student falls behind with systematic gap closure strategies.',
+      gradient: 'from-orange-500 via-amber-500 to-yellow-500',
+      accentColor: 'orange'
+    },
+    {
+      title: 'Parent Communication Portal',
+      subtitle: 'Keep parents informed with automated progress updates.',
+      icon: '📱',
+      number: '05',
+      videoPlaceholder: '/parent-portal.mp4',
+      benefits: [
+        'Automated WhatsApp reports to parents',
+        'Weekly/Monthly performance summaries',
+        'Instant notification on exam completion',
+        'Parent access to detailed analytics',
+        'Two-way communication channel',
+        'Attendance and homework tracking'
+      ],
+      whyItHelps: 'Improve parent engagement and keep them informed about their child\'s progress without manual effort.',
+      gradient: 'from-indigo-500 via-blue-500 to-sky-500',
+      accentColor: 'indigo'
+    },
+    {
+      title: 'School-wide Analytics',
+      subtitle: 'Institutional level insights for strategic planning.',
+      icon: '📈',
+      number: '06',
+      videoPlaceholder: '/school-analytics.mp4',
+      benefits: [
+        'Compare performance across multiple classes',
+        'Year-over-year improvement tracking',
+        'Board exam preparation readiness',
+        'Teacher performance insights',
+        'Subject-wise school average analysis',
+        'Identify top performers and struggling groups'
+      ],
+      whyItHelps: 'Strategic insights for school management to make informed decisions about curriculum and teaching methods.',
+      gradient: 'from-violet-500 via-purple-500 to-fuchsia-500',
+      accentColor: 'violet'
+    }
+  ]
+
+  // Select features based on user type
+  const carouselFeatures = userType === 'school' ? schoolFeatures : parentFeatures
+
   const nextFeature = () => {
     setCurrentIndex((prev) => (prev + 1) % carouselFeatures.length)
   }
@@ -172,9 +290,9 @@ const Features = () => {
   }
 
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen pt-20 bg-[#0f172a]">
       {/* Header Section */}
-      <section className="pt-8 pb-4 bg-gradient-to-br from-purple-50 to-pink-50">
+      <section className="pt-8 pb-4 bg-gradient-to-br from-[#1a1f3a] to-[#0f1628]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center"
@@ -182,24 +300,25 @@ const Features = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl font-bold text-gray-900 mb-6">
+            <h1 className="text-5xl font-bold text-white mb-6">
               Powerful <span className="gradient-text">Features</span>
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Discover the advanced AI-powered features that make Smart Learners.ai
-              the most effective learning platform for students.
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              {userType === 'school'
+                ? 'Discover the comprehensive school management features that make Smart Learners.ai the most effective platform for educational institutions.'
+                : 'Discover the advanced AI-powered features that make Smart Learners.ai the most effective learning platform for students.'}
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Interactive Carousel Section */}
-      <section className="pt-4 pb-16 relative overflow-hidden">
+      <section className="pt-4 pb-16 relative overflow-hidden bg-[#0f172a]">
         {/* Animated Background */}
         <div className="absolute inset-0 -z-10">
-          <div className={`absolute inset-0 bg-gradient-to-br ${carouselFeatures[currentIndex].gradient} opacity-10 transition-all duration-1000`}></div>
+          <div className={`absolute inset-0 bg-gradient-to-br ${carouselFeatures[currentIndex].gradient} opacity-5 transition-all duration-1000`}></div>
           <motion.div
-            className="absolute top-20 -left-20 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
+            className="absolute top-20 -left-20 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl opacity-10"
             animate={{
               x: [0, 100, 0],
               y: [0, -100, 0],
@@ -212,7 +331,7 @@ const Features = () => {
             }}
           />
           <motion.div
-            className="absolute bottom-20 -right-20 w-96 h-96 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
+            className="absolute bottom-20 -right-20 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl opacity-10"
             animate={{
               x: [0, -100, 0],
               y: [0, 100, 0],
@@ -238,7 +357,7 @@ const Features = () => {
                 className="relative"
               >
                 {/* Main Card Container */}
-                <div className={`bg-gradient-to-br from-white via-white to-gray-50/30 rounded-3xl shadow-2xl p-8 lg:p-12 backdrop-blur-sm border-2 relative overflow-hidden`}
+                <div className={`bg-gradient-to-br from-[#1a1f3a] via-[#1a1f3a] to-[#0f1628] rounded-3xl shadow-2xl p-8 lg:p-12 backdrop-blur-sm border-2 relative overflow-hidden`}
                   style={{
                     borderImage: `linear-gradient(135deg, ${
                       currentIndex === 0 ? '#10b981, #14b8a6' :
@@ -275,12 +394,12 @@ const Features = () => {
                     {/* Left Side - Text Content */}
                     <div className="space-y-5">
                       <div>
-                        <h2 className="text-4xl font-bold text-gray-900 mb-2 leading-tight">
+                        <h2 className="text-4xl font-bold text-white mb-2 leading-tight">
                           {carouselFeatures[currentIndex].title}
                         </h2>
                       </div>
 
-                      <p className="text-xl text-gray-700 leading-relaxed">
+                      <p className="text-xl text-gray-300 leading-relaxed">
                         {carouselFeatures[currentIndex].subtitle}
                       </p>
 
@@ -306,7 +425,7 @@ const Features = () => {
                                   '#ec4899'
                               }}
                             />
-                            <span className="text-gray-700 text-lg">{benefit}</span>
+                            <span className="text-gray-300 text-lg">{benefit}</span>
                           </motion.div>
                         ))}
                       </div>
@@ -315,7 +434,7 @@ const Features = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.5 }}
-                        className={`relative p-6 rounded-xl border-l-4 shadow-md hover:shadow-xl transition-all duration-300`}
+                        className={`relative p-6 rounded-xl border-l-4 shadow-md hover:shadow-xl transition-all duration-300 bg-[#0f1628]/50`}
                         style={{
                           background: `linear-gradient(135deg, ${
                             currentIndex === 0 ? 'rgba(16, 185, 129, 0.1), rgba(20, 184, 166, 0.05)' :
@@ -342,8 +461,8 @@ const Features = () => {
                             <span className="text-white text-xl">💡</span>
                           </div>
                           <div>
-                            <h3 className="font-bold text-lg text-gray-900 mb-2">How it helps:</h3>
-                            <p className="text-gray-700 leading-relaxed">
+                            <h3 className="font-bold text-lg text-white mb-2">How it helps:</h3>
+                            <p className="text-gray-300 leading-relaxed">
                               {carouselFeatures[currentIndex].whyItHelps}
                             </p>
                           </div>
@@ -490,7 +609,7 @@ const Features = () => {
             {/* Navigation Arrows */}
             <button
               onClick={prevFeature}
-              className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 lg:-translate-x-20 bg-gradient-to-r ${carouselFeatures[currentIndex].gradient} text-white p-4 rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 z-10 group hover:scale-110`}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 lg:-translate-x-20 bg-gradient-to-r from-blue-500 to-purple-500 text-white p-4 rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 z-10 group hover:scale-110"
               aria-label="Previous feature"
             >
               <FaChevronLeft className="text-2xl group-hover:scale-110 transition-transform" />
@@ -498,7 +617,7 @@ const Features = () => {
 
             <button
               onClick={nextFeature}
-              className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 lg:translate-x-20 bg-gradient-to-r ${carouselFeatures[currentIndex].gradient} text-white p-4 rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 z-10 group hover:scale-110`}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 lg:translate-x-20 bg-gradient-to-r from-blue-500 to-purple-500 text-white p-4 rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 z-10 group hover:scale-110"
               aria-label="Next feature"
             >
               <FaChevronRight className="text-2xl group-hover:scale-110 transition-transform" />
@@ -513,8 +632,8 @@ const Features = () => {
                 onClick={() => goToFeature(index)}
                 className={`transition-all duration-300 rounded-full ${
                   index === currentIndex
-                    ? 'w-12 h-3 bg-gradient-to-r ' + carouselFeatures[currentIndex].gradient
-                    : 'w-3 h-3 bg-gray-300 hover:bg-gray-400'
+                    ? 'w-12 h-3 bg-gradient-to-r from-blue-500 to-purple-500'
+                    : 'w-3 h-3 bg-gray-600 hover:bg-gray-500'
                 }`}
                 aria-label={`Go to feature ${index + 1}`}
               />

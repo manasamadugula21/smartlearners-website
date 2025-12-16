@@ -1,501 +1,346 @@
 'use client'
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
-import { motion } from 'framer-motion'
-import Button from '@/components/Button'
-import Card from '@/components/Card'
-import { 
-  FaBrain, 
-  FaChartLine, 
-  FaUserGraduate, 
-  FaCertificate, 
-  FaRocket, 
-  FaBookOpen,
-  FaPlay,
-  FaArrowRight,
-  FaStar
-} from 'react-icons/fa'
-import { HiLightBulb, HiAcademicCap, HiSparkles } from 'react-icons/hi'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useUserType } from '@/contexts/UserTypeContext'
+import UserTypeSelection from '@/components/UserTypeSelection'
 
-const Home = () => {
-  const [activeStudentCard, setActiveStudentCard] = useState<number | null>(null)
-  const [activeTeacherCard, setActiveTeacherCard] = useState<number | null>(null)
+const features = [
+  { icon: '🤖', title: 'AI-Chatbot', desc: 'Get instant help from our AI tutor available 24/7. Ask questions and receive personalized guidance.', color: '#60a5fa' },
+  { icon: '📊', title: 'Smart Analytics', desc: 'Track progress with detailed insights. Identify strengths and get recommendations.', color: '#a855f7' },
+  { icon: '🎮', title: 'Gamified Learning', desc: 'Earn points, badges. Make learning fun and stay motivated.', color: '#f472b6' },
+  { icon: '🧪', title: 'Practice Tests', desc: 'Prepare with AI-generated practice tests that adapt to your skill level.', color: '#fbbf24' },
+  { icon: '📚', title: 'CBSE & JEE FOUNDATION', desc: 'Complete curriculum coverage for Class 6-12 aligned with CBSE and JEE FOUNDATION.', color: '#fb7185' },
+  { icon: '🚀', title: 'JEE Mains & Advanced', desc: 'Complete JEE preparation with topic-wise practice, mock tests, challenging problems, and AI-powered solutions for Class 11 & 12.', color: '#f59e0b' },
+]
 
-  const features = [
-    {
-      image: '/curriculum-coverage.png',
-      title: 'Comprehensive Curriculum Coverage',
-      description: 'Complete learning for NCERT 6–12, IIT Foundation, and JEE Main & Advanced – all in one app.',
-      color: 'from-sky-500 to-blue-600'
-    },
-    {
-      image: '/ai-powered-learning.png',
-      title: 'AI-Powered Learning',
-      description: 'Advanced Agentic AI Innovation to personalize your learning journey for maximum efficiency and engagement',
-      color: 'from-blue-500 to-indigo-600'
-    },
-    {
-      image: '/gap-analysis.png',
-      title: 'Gap Analysis',
-      description: 'From self study, homework, and classwork, track student progress with detailed class and individual reports.',
-      color: 'from-indigo-500 to-purple-600'
-    }
-  ]
-  
-  
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
-  }
-  
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94]
-      }
-    }
-  }
-  
+const stats = [
+  { value: '50,000+', label: 'Active Students' },
+  { value: '200+', label: 'Partner Schools' },
+  { value: '95%', label: 'Success Rate' },
+]
+
+const testimonials = [
+  { quote: "SmartLearners.ai transformed how I study. The AI tutor helped me improve my math scores by 40%!", name: 'Priya Sharma', role: 'Class 12 Student, Delhi' },
+  { quote: "The analytics dashboard gives me insights I never had before. It's a game-changer for our institution.", name: 'Rajesh Kumar', role: 'Teacher, Hyderabad' },
+  { quote: "My daughter loves the gamified approach. She actually asks to study now!", name: 'Anita Desai', role: 'Parent' },
+]
+
+export default function Home() {
+  const { userType } = useUserType()
+  const [activeTab, setActiveTab] = useState<'students' | 'schools'>('students')
+
+  // Determine default content based on user type
+  const isParent = userType === 'parent'
+  const isSchool = userType === 'school'
+
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative pt-10 pb-4 overflow-hidden">
-        {/* Background */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-100 via-blue-100 to-pink-100"></div>
-          <div className="absolute inset-0 bg-gradient-to-tr from-sky-200/30 via-transparent to-indigo-200/30"></div>
-          <div className="absolute inset-0 bg-mesh opacity-40"></div>
-          <motion.div
-            className="absolute top-20 -left-20 w-96 h-96 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full mix-blend-multiply filter blur-xl opacity-30"
-            animate={{
-              x: [0, 100, 0],
-              y: [0, -100, 0],
-              scale: [1, 1.2, 1]
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          />
-          <motion.div
-            className="absolute top-40 -right-20 w-96 h-96 bg-gradient-to-l from-blue-400 to-indigo-400 rounded-full mix-blend-multiply filter blur-xl opacity-30"
-            animate={{
-              x: [0, -100, 0],
-              y: [0, 100, 0],
-              scale: [1.2, 1, 1.2]
-            }}
-            transition={{
-              duration: 25,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          />
-          <motion.div
-            className="absolute bottom-20 left-1/2 w-96 h-96 bg-gradient-to-t from-sky-400 to-cyan-400 rounded-full mix-blend-multiply filter blur-xl opacity-25"
-            animate={{
-              x: [-50, 50, -50],
-              y: [0, -50, 0],
-              scale: [1, 1.1, 1]
-            }}
-            transition={{
-              duration: 30,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          />
-        </div>
-        
-        <motion.div 
-          className="relative container-max section-padding pt-2"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <div className="text-center">
-            <motion.div variants={itemVariants}>
-              <motion.span
-                className="inline-flex items-center px-5 py-2.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full text-sm font-medium mb-6 text-rendering-fix shadow-lg shadow-purple-500/30"
-                whileHover={{ scale: 1.05, shadow: "0 20px 40px rgba(168, 85, 247, 0.4)" }}
-              >
-                <HiSparkles className="mr-2" />
-                Your Path to Smarter Learning - Designed & Developed by Orcalex Technologies
-              </motion.span>
+    <div className="overflow-hidden">
+      {/* ========== FLOATING BACKGROUND ========== */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        <div className="floating-shape" style={{ width: 400, height: 400, background: '#3b82f6', top: '10%', left: '-10%' }} />
+        <div className="floating-shape" style={{ width: 300, height: 300, background: '#a855f7', top: '60%', right: '-5%', animationDelay: '2s' }} />
+        <div className="floating-shape" style={{ width: 250, height: 250, background: '#f472b6', bottom: '10%', left: '30%', animationDelay: '4s' }} />
+      </div>
+
+      {/* ========== HERO SECTION ========== */}
+      <section className="relative min-h-screen flex items-center pt-20">
+        <div className="container-custom relative z-10 py-20">
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="badge badge-primary mb-8">
+              🚀 AI-Powered Learning Platform for Class 6-12
             </motion.div>
-            
-            <motion.h1 
-              className="text-5xl md:text-7xl font-bold text-gray-900 mb-8 text-shadow text-rendering-fix leading-tight"
-              variants={itemVariants}
-            >
-              <span className="gradient-text">The No.1 Agentic AI Educational App</span><br />
-              <span className="text-4xl md:text-6xl">All-in-One Learning Platform</span>
+
+            <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white leading-tight">
+              NO.1 Agentic AI<br />
+              <span className="gradient-text">All-in-One Educational Platform</span>
             </motion.h1>
-            
-            <motion.p 
-              className="text-xl md:text-2xl text-gray-600 mb-4 max-w-4xl mx-auto leading-relaxed text-rendering-fix"
-              variants={itemVariants}
-            >
-              Experience personalized education that adapts to your pace. 
-              <span className="gradient-text font-semibold"> Learn in silence, shine with brilliance.</span>
+
+            <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+              Personalized <span className="text-blue-400 font-bold">CBSE</span> & <span className="text-purple-400 font-bold">JEE FOUNDATION</span> courses for Class 6-12. AI-powered learning paths, adaptive assessments, and real-time progress tracking.
             </motion.p>
-            
-            <motion.div
-              className="flex flex-col sm:flex-row gap-6 justify-center mb-0"
-              variants={itemVariants}
-            >
-              <Button variant="secondary" size="xl" icon={<FaArrowRight />} href="/free-trial">
-                Start Free Trial
-              </Button>
-            </motion.div>
-            
+
+            {userType && (
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="flex flex-wrap justify-center gap-4 mb-16">
+                {isParent ? (
+                  <>
+                    <Link href="/signup" className="btn-primary text-lg px-8 py-4">Start Learning Free →</Link>
+                    <Link href="/contact" className="btn-secondary text-lg px-8 py-4">Book a Demo</Link>
+                  </>
+                ) : (
+                  <>
+                    <Link href="/contact" className="btn-primary text-lg px-8 py-4" style={{ background: 'linear-gradient(135deg, #a855f7, #ec4899)' }}>Schedule Demo →</Link>
+                    <Link href="/schools" className="btn-secondary text-lg px-8 py-4">Learn More</Link>
+                  </>
+                )}
+              </motion.div>
+            )}
           </div>
-        </motion.div>
+        </div>
       </section>
-      
-      {/* Features Section */}
-      <section className="pt-0 pb-8 bg-gradient-to-br from-blue-100 via-indigo-100 to-purple-100 relative overflow-hidden">
-        <div className="absolute inset-0 bg-mesh opacity-20"></div>
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-pink-300 to-purple-300 rounded-full blur-3xl opacity-20"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-blue-300 to-sky-300 rounded-full blur-3xl opacity-20"></div>
-        <div className="container-max relative z-10">
-          <motion.div 
-            className="text-center mb-2"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 text-rendering-fix leading-tight">
-              Why Choose <span className="gradient-text">Smart Learners</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed text-rendering-fix">
-              Our AI-powered platform provides personalized learning experiences 
-              tailored to each student's unique needs.
-            </p>
-          </motion.div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <Card 
-                key={index}
-                hover
-                glow
-                delay={index * 0.1}
-                className="h-full group text-center"
-              >
-                <div className="mb-6 mx-auto">
-                  <div className="relative w-64 h-64 mx-auto">
-                    <Image
-                      src={feature.image}
-                      alt={feature.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-contain"
-                    />
-                  </div>
+
+      {/* ========== USER TYPE SELECTION ========== */}
+      {!userType && <UserTypeSelection />}
+
+      {/* ========== CONTENT SECTIONS - Only show after user type is selected ========== */}
+      {userType && (
+        <>
+          {/* ========== STATS BAR ========== */}
+          <section className="py-12 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border-y border-white/5">
+        <div className="container-custom">
+          <div className="flex flex-wrap justify-center gap-16 md:gap-24 lg:gap-32">
+            {isParent ? (
+              <>
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl font-bold text-white mb-1">50,000+</div>
+                  <div className="text-gray-400 text-sm">Active Students</div>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4 text-rendering-fix leading-tight">{feature.title}</h3>
-                <p className="text-gray-600 leading-relaxed text-rendering-fix">{feature.description}</p>
-              </Card>
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl font-bold text-white mb-1">95%</div>
+                  <div className="text-gray-400 text-sm">Success Rate</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl font-bold text-white mb-1">24/7</div>
+                  <div className="text-gray-400 text-sm">AI Tutor Available</div>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl font-bold text-white mb-1">200+</div>
+                  <div className="text-gray-400 text-sm">Partner Schools</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl font-bold text-white mb-1">100,000+</div>
+                  <div className="text-gray-400 text-sm">Students Analyzed</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl font-bold text-white mb-1">98%</div>
+                  <div className="text-gray-400 text-sm">School Satisfaction</div>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* ========== SOLUTION HIGHLIGHT SECTION ========== */}
+      <section className="section-padding" id="solutions">
+        <div className="container-custom">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+            <div className="glass-card p-8 md:p-12">
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                {isParent ? (
+                  <>
+                    <div>
+                      <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-4xl mb-6">🎯</div>
+                      <h3 className="text-3xl font-bold text-white mb-4">Personalized Learning Journey</h3>
+                      <p className="text-gray-400 mb-6">Our AI analyzes your learning style to create a customized curriculum for CBSE & NCERT syllabus.</p>
+                      <ul className="space-y-3 mb-8">
+                        {['AI-powered study recommendations', 'NCERT Class 6-10 Complete Course', 'NCERT Class 11-12 Complete Course', 'Adaptive practice questions', 'Progress tracking & analytics'].map((item) => (
+                          <li key={item} className="flex items-center gap-3 text-gray-300">
+                            <span className="text-blue-400">✓</span> {item}
+                          </li>
+                        ))}
+                      </ul>
+                      <Link href="/students" className="btn-primary">Learn More →</Link>
+                    </div>
+                    <div className="glass-card p-8">
+                      <div className="text-center mb-6">
+                        <span className="text-blue-400 text-sm font-semibold uppercase tracking-wider">Course Pricing</span>
+                      </div>
+                      <div className="space-y-4 mb-6">
+                        <div className="p-4 rounded-xl bg-white/5 border border-white/10">
+                          <div className="flex justify-between items-center">
+                            <div>
+                              <h4 className="font-semibold text-white">NCERT Class 6-10</h4>
+                              <p className="text-sm text-gray-400">All subjects included</p>
+                            </div>
+                            <span className="text-2xl font-bold text-blue-400">₹500</span>
+                          </div>
+                        </div>
+                        <div className="p-4 rounded-xl bg-white/5 border border-white/10">
+                          <div className="flex justify-between items-center">
+                            <div>
+                              <h4 className="font-semibold text-white">NCERT Class 11-12</h4>
+                              <p className="text-sm text-gray-400">All subjects included</p>
+                            </div>
+                            <span className="text-2xl font-bold text-blue-400">₹600</span>
+                          </div>
+                        </div>
+                      </div>
+                      <Link href="/signup" className="btn-primary w-full text-center block">Register Now</Link>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div>
+                      <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-4xl mb-6">📊</div>
+                      <h3 className="text-3xl font-bold text-white mb-4">Exam Analysis & Gap Assessment</h3>
+                      <p className="text-gray-400 mb-6">Comprehensive exam analysis system to identify learning gaps and improve student performance with AI-powered insights.</p>
+                      <ul className="space-y-3 mb-8">
+                        {['Detailed exam performance reports', 'Chapter-wise gap analysis', 'Student strength & weakness mapping', 'Class & section comparison analytics', 'Personalized improvement recommendations'].map((item) => (
+                          <li key={item} className="flex items-center gap-3 text-gray-300">
+                            <span className="text-purple-400">✓</span> {item}
+                          </li>
+                        ))}
+                      </ul>
+                      <Link href="/schools" className="btn-primary" style={{ background: 'linear-gradient(135deg, #a855f7, #ec4899)' }}>Learn More →</Link>
+                    </div>
+                    <div className="glass-card p-8">
+                      <div className="text-center mb-6">
+                        <span className="text-purple-400 text-sm font-semibold uppercase tracking-wider">School Plans</span>
+                      </div>
+                      <div className="space-y-3 mb-8">
+                        {[
+                          { range: 'Up to 500 students', price: '₹199/student/year' },
+                          { range: '500 - 2,000 students', price: '₹149/student/year' },
+                          { range: '2,000+ students', price: 'Custom pricing' },
+                        ].map((tier) => (
+                          <div key={tier.range} className="flex justify-between p-4 rounded-xl bg-white/5">
+                            <span className="text-gray-400">{tier.range}</span>
+                            <span className="font-semibold text-white">{tier.price}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <Link href="/contact" className="btn-primary w-full text-center block" style={{ background: 'linear-gradient(135deg, #a855f7, #ec4899)' }}>Download Demo</Link>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ========== FEATURES SECTION ========== */}
+      <section className="section-padding" id="features">
+        <div className="container-custom">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">Powered by <span className="gradient-text">Advanced AI</span></h2>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">Our cutting-edge technology adapts to every learner&apos;s unique needs</p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((feature) => (
+              <div key={feature.title} className="glass-card p-6 hover-lift cursor-pointer">
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-4" style={{ background: `${feature.color}20` }}>
+                  {feature.icon}
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-2">{feature.title}</h3>
+                <p className="text-gray-400 leading-relaxed">{feature.desc}</p>
+              </div>
             ))}
           </div>
-          
-          <motion.div 
-            className="flex justify-center mt-8"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-          >
-            <Link href="/features">
-              <Button variant="primary" size="lg" icon={<FaArrowRight />}>
-                Explore All Features
-              </Button>
-            </Link>
-          </motion.div>
         </div>
       </section>
-      
-      {/* How It Works Section */}
-      <section className="py-12 bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 relative overflow-hidden">
-        <div className="absolute inset-0 bg-mesh opacity-10"></div>
-        <div className="absolute top-1/4 right-0 w-80 h-80 bg-gradient-to-br from-purple-300 to-pink-300 rounded-full blur-3xl opacity-15"></div>
-        <div className="absolute bottom-1/4 left-0 w-80 h-80 bg-gradient-to-tr from-blue-300 to-indigo-300 rounded-full blur-3xl opacity-15"></div>
-        <div className="container-max relative z-10">
-          <motion.div 
-            className="text-center mb-8"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 text-rendering-fix leading-tight">
-              How It <span className="gradient-text">Works</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed text-rendering-fix">
-              Discover how our platform empowers both students and teachers with powerful tools for effective learning and teaching.
-            </p>
-          </motion.div>
-          
-          {/* Student Dashboard Section */}
-          <div className="mb-12">
-            <h3 className="text-3xl font-bold text-center text-gray-900 mb-8 text-rendering-fix">
-              👩‍🎓 Student Dashboard
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-              <Card hover glow delay={0} className="overflow-visible p-0 group relative cursor-pointer" onClick={() => setActiveStudentCard(activeStudentCard === 0 ? null : 0)}>
-                <div className="relative h-48 w-full bg-slate-800 overflow-visible">
-                  <Image
-                    src="/login-portal.png"
-                    alt="Login & Access"
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 20vw"
-                    className={`object-contain p-2 transition-all duration-500 ease-in-out ${activeStudentCard === 0 ? 'scale-[2.5] z-50 shadow-2xl rounded-lg' : ''}`}
-                  />
-                  {/* Text overlay positioned further down */}
-                  <div className={`absolute top-[320px] left-1/2 transform -translate-x-1/2 bg-gradient-to-br from-blue-600/95 to-purple-600/95 text-white px-6 py-4 rounded-lg shadow-2xl transition-all duration-500 z-[60] min-w-[300px] backdrop-blur-sm ${activeStudentCard === 0 ? 'opacity-100' : 'opacity-0'}`}>
-                    <h4 className="font-bold text-lg mb-2 text-center">Login & Access</h4>
-                    <p className="text-white/90 text-sm text-center">Log in to start learning and manage all your tasks in one place.</p>
-                  </div>
-                </div>
-                <div className="p-3 text-center">
-                  <h4 className="text-lg font-bold text-gray-900 mb-1">Login & Access</h4>
-                  <p className="text-sm text-gray-600">Log in to start learning and manage all your tasks in one place.</p>
-                </div>
-              </Card>
-              
-              <Card hover glow delay={0.1} className="overflow-visible p-0 group relative cursor-pointer" onClick={() => setActiveStudentCard(activeStudentCard === 1 ? null : 1)}>
-                <div className="relative h-48 w-full bg-slate-800 overflow-visible">
-                  <Image
-                    src="/merged-student-dashboard.png"
-                    alt="Self Practice"
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 20vw"
-                    className={`object-contain p-2 transition-all duration-500 ease-in-out ${activeStudentCard === 1 ? 'scale-[2.5] z-50 shadow-2xl rounded-lg' : ''}`}
-                  />
-                </div>
-                  <div className={`absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-gradient-to-br from-blue-600/95 to-purple-600/95 text-white px-6 py-4 rounded-lg shadow-2xl transition-all duration-500 z-[60] min-w-[300px] backdrop-blur-sm ${activeStudentCard === 1 ? 'opacity-100' : 'opacity-0'}`}>
-                    <h4 className="font-bold text-lg mb-2 text-center">Self Practice</h4>
-                    <p className="text-white/90 text-sm text-center">Practice chapter-wise exercises at your own pace and get instant feedback.</p>
-                  </div>
-                <div className="p-3 text-center">
-                  <h4 className="text-lg font-bold text-gray-900 mb-1">Self Practice</h4>
-                  <p className="text-sm text-gray-600">Practice chapter-wise exercises at your own pace and get instant feedback.</p>
-                </div>
-              </Card>
-              
-              <Card hover glow delay={0.2} className="overflow-visible p-0 group relative cursor-pointer" onClick={() => setActiveStudentCard(activeStudentCard === 2 ? null : 2)}>
-                <div className="relative h-48 w-full bg-slate-800 overflow-visible">
-                  <Image
-                    src="/merged-teacher-dashboard.png"
-                    alt="Homework"
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 20vw"
-                    className={`object-contain p-2 transition-all duration-500 ease-in-out ${activeStudentCard === 2 ? 'scale-[2.5] z-50 shadow-2xl rounded-lg' : ''}`}
-                  />
-                </div>
-                  <div className={`absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-gradient-to-br from-blue-600/95 to-purple-600/95 text-white px-6 py-4 rounded-lg shadow-2xl transition-all duration-500 z-[60] min-w-[300px] backdrop-blur-sm ${activeStudentCard === 2 ? 'opacity-100' : 'opacity-0'}`}>
-                    <h4 className="font-bold text-lg mb-2 text-center">Homework</h4>
-                    <p className="text-white/90 text-sm text-center">Receive notifications for homework assigned by teachers and submit for quick feedback.</p>
-                  </div>
-                <div className="p-3 text-center">
-                  <h4 className="text-lg font-bold text-gray-900 mb-1">Homework</h4>
-                  <p className="text-sm text-gray-600">Receive notifications for homework assigned by teachers and submit for quick feedback.</p>
-                </div>
-              </Card>
-              
-              <Card hover glow delay={0.3} className="overflow-visible p-0 group relative cursor-pointer" onClick={() => setActiveStudentCard(activeStudentCard === 3 ? null : 3)}>
-                <div className="relative h-48 w-full bg-slate-800 overflow-visible">
-                  <Image
-                    src="/merged-performance-analysis.png"
-                    alt="Track Progress"
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 20vw"
-                    className={`object-contain p-2 transition-all duration-500 ease-in-out ${activeStudentCard === 3 ? 'scale-[2.5] z-50 shadow-2xl rounded-lg' : ''}`}
-                  />
-                </div>
-                  <div className={`absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-gradient-to-br from-blue-600/95 to-purple-600/95 text-white px-6 py-4 rounded-lg shadow-2xl transition-all duration-500 z-[60] min-w-[300px] backdrop-blur-sm ${activeStudentCard === 3 ? 'opacity-100' : 'opacity-0'}`}>
-                    <h4 className="font-bold text-lg mb-2 text-center">Track Progress</h4>
-                    <p className="text-white/90 text-sm text-center">Use analytics dashboard to check performance with gap analysis.</p>
-                  </div>
-                <div className="p-3 text-center">
-                  <h4 className="text-lg font-bold text-gray-900 mb-1">Track Progress</h4>
-                  <p className="text-sm text-gray-600">Use analytics dashboard to check performance with gap analysis.</p>
-                </div>
-              </Card>
-              
-              <Card hover glow delay={0.4} className="overflow-visible p-0 group relative cursor-pointer" onClick={() => setActiveStudentCard(activeStudentCard === 4 ? null : 4)}>
-                <div className="relative h-48 w-full bg-slate-800 overflow-visible">
-                  <Image
-                    src="/merged-card-image.png"
-                    alt="Chatbot"
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 20vw"
-                    className={`object-contain p-2 transition-all duration-500 ease-in-out ${activeStudentCard === 4 ? 'scale-[2.5] z-50 shadow-2xl rounded-lg' : ''}`}
-                  />
-                </div>
-                  <div className={`absolute top-[280px] left-1/2 transform -translate-x-1/2 bg-gradient-to-br from-blue-600/95 to-purple-600/95 text-white px-6 py-4 rounded-lg shadow-2xl transition-all duration-500 z-[60] min-w-[300px] backdrop-blur-sm ${activeStudentCard === 4 ? 'opacity-100' : 'opacity-0'}`}>
-                    <h4 className="font-bold text-lg mb-2 text-center">Chatbot</h4>
-                    <p className="text-white/90 text-sm text-center">Ask anything anytime — get solutions and study plans instantly.</p>
-                  </div>
-                <div className="p-3 text-center">
-                  <h4 className="text-lg font-bold text-gray-900 mb-1">Chatbot</h4>
-                  <p className="text-sm text-gray-600">Ask anything anytime — get solutions and study plans instantly.</p>
-                </div>
-              </Card>
-            </div>
+
+      {/* ========== HOW IT WORKS ========== */}
+      <section className="section-padding bg-white/[0.02]">
+        <div className="container-custom">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">How It <span className="gradient-text">Works</span></h2>
+            <p className="text-xl text-gray-400">Get started in 3 simple steps</p>
           </div>
-          
-          {/* Teacher Dashboard Section */}
-          <div>
-            <h3 className="text-3xl font-bold text-center text-gray-900 mb-8 text-rendering-fix">
-              👩‍🏫 Teacher Dashboard
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-              <Card hover glow delay={0} className="overflow-visible p-0 group relative cursor-pointer" onClick={() => setActiveTeacherCard(activeTeacherCard === 0 ? null : 0)}>
-                <div className="relative h-48 w-full bg-slate-800 overflow-visible">
-                  <Image
-                    src="/login-portal.png"
-                    alt="Login & Assign"
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 20vw"
-                    className={`object-contain p-2 transition-all duration-500 ease-in-out ${activeTeacherCard === 0 ? 'scale-[2.5] z-50 shadow-2xl rounded-lg' : ''}`}
-                  />
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { step: '01', title: 'Sign Up', desc: 'Create your account and choose your class and subjects.', icon: '📝' },
+              { step: '02', title: 'Learn with AI', desc: 'Get personalized lessons, practice tests, and AI tutoring.', icon: '🤖' },
+              { step: '03', title: 'Track Progress', desc: 'Monitor your improvement with detailed analytics.', icon: '📈' },
+            ].map((item) => (
+              <div key={item.step} className="text-center">
+                <div className="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-4xl mb-6">
+                  {item.icon}
                 </div>
-                  <div className={`absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-gradient-to-br from-blue-600/95 to-purple-600/95 text-white px-6 py-4 rounded-lg shadow-2xl transition-all duration-500 z-[60] min-w-[300px] backdrop-blur-sm ${activeTeacherCard === 0 ? 'opacity-100' : 'opacity-0'}`}>
-                    <h4 className="font-bold text-lg mb-2 text-center">Login & Assign</h4>
-                    <p className="text-white/90 text-sm text-center">Easily assign classwork and homework to students directly.</p>
+                <div className="text-blue-400 font-bold text-sm mb-2">STEP {item.step}</div>
+                <h3 className="text-2xl font-bold text-white mb-3">{item.title}</h3>
+                <p className="text-gray-400">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========== TESTIMONIALS ========== */}
+      <section className="section-padding">
+        <div className="container-custom">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">Loved by Learners & Educators</h2>
+            <p className="text-xl text-gray-400">See what our community has to say</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {testimonials.map((t) => (
+              <div key={t.name} className="glass-card p-6 hover-lift">
+                <div className="text-3xl text-blue-400 mb-4">&quot;</div>
+                <p className="text-gray-300 mb-6 italic leading-relaxed">{t.quote}</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-semibold">
+                    {t.name.charAt(0)}
                   </div>
-                <div className="p-3 text-center">
-                  <h4 className="text-lg font-bold text-gray-900 mb-1">Login & Assign</h4>
-                  <p className="text-sm text-gray-600">Easily assign classwork and homework to students directly.</p>
-                </div>
-              </Card>
-              
-              <Card hover glow delay={0.1} className="overflow-visible p-0 group relative cursor-pointer" onClick={() => setActiveTeacherCard(activeTeacherCard === 1 ? null : 1)}>
-                <div className="relative h-48 w-full bg-slate-800 overflow-visible">
-                  <Image
-                    src="/merged-classwork-homework.png"
-                    alt="Homework & Classwork"
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 20vw"
-                    className={`object-contain p-2 transition-all duration-500 ease-in-out ${activeTeacherCard === 1 ? 'scale-[2.5] z-50 shadow-2xl rounded-lg' : ''}`}
-                  />
-                </div>
-                  <div className={`absolute top-[280px] left-1/2 transform -translate-x-1/2 bg-gradient-to-br from-blue-600/95 to-purple-600/95 text-white px-6 py-4 rounded-lg shadow-2xl transition-all duration-500 z-[60] min-w-[300px] backdrop-blur-sm ${activeTeacherCard === 1 ? 'opacity-100' : 'opacity-0'}`}>
-                    <h4 className="font-bold text-lg mb-2 text-center">Homework & Classwork</h4>
-                    <p className="text-white/90 text-sm text-center">Assign homework and classwork to be completed through the platform.</p>
+                  <div>
+                    <div className="font-semibold text-white">{t.name}</div>
+                    <div className="text-gray-500 text-sm">{t.role}</div>
                   </div>
-                <div className="p-3 text-center">
-                  <h4 className="text-lg font-bold text-gray-900 mb-1">Homework & Classwork</h4>
-                  <p className="text-sm text-gray-600">Assign homework and classwork to be completed through the platform.</p>
                 </div>
-              </Card>
-              
-              <Card hover glow delay={0.2} className="overflow-visible p-0 group relative cursor-pointer" onClick={() => setActiveTeacherCard(activeTeacherCard === 2 ? null : 2)}>
-                <div className="relative h-48 w-full bg-slate-800 overflow-visible">
-                  <Image
-                    src="/merged-assignment-latest.png"
-                    alt="Worksheets"
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 20vw"
-                    className={`object-contain p-2 transition-all duration-500 ease-in-out ${activeTeacherCard === 2 ? 'scale-[2.5] z-50 shadow-2xl rounded-lg' : ''}`}
-                  />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========== SUBJECTS ========== */}
+      <section className="section-padding bg-white/[0.02]">
+        <div className="container-custom">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4 text-white">Complete <span className="gradient-text">Curriculum</span></h2>
+            <p className="text-xl text-gray-400">All subjects for Class 6-12</p>
+          </div>
+          <div className="flex flex-wrap justify-center gap-4">
+            {[
+              { name: 'Mathematics', icon: '📐', color: 'from-blue-500 to-blue-600' },
+              { name: 'Science', icon: '🔬', color: 'from-green-500 to-green-600' },
+              { name: 'English', icon: '📚', color: 'from-purple-500 to-purple-600' },
+              { name: 'Social Studies', icon: '🌍', color: 'from-yellow-500 to-yellow-600' },
+            ].map((subject) => (
+              <div key={subject.name} className="glass-card p-6 text-center hover-lift">
+                <div className={`w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br ${subject.color} flex items-center justify-center text-3xl mb-4`}>
+                  {subject.icon}
                 </div>
-                  <div className={`absolute top-[280px] left-1/2 transform -translate-x-1/2 bg-gradient-to-br from-blue-600/95 to-purple-600/95 text-white px-6 py-4 rounded-lg shadow-2xl transition-all duration-500 z-[60] min-w-[300px] backdrop-blur-sm ${activeTeacherCard === 2 ? 'opacity-100' : 'opacity-0'}`}>
-                    <h4 className="font-bold text-lg mb-2 text-center">Worksheets</h4>
-                    <p className="text-white/90 text-sm text-center">Create and assign custom worksheets with your own questions.</p>
-                  </div>
-                <div className="p-3 text-center">
-                  <h4 className="text-lg font-bold text-gray-900 mb-1">Worksheets</h4>
-                  <p className="text-sm text-gray-600">Create and assign custom worksheets with your own questions.</p>
-                </div>
-              </Card>
-              
-              <Card hover glow delay={0.3} className="overflow-visible p-0 group relative cursor-pointer" onClick={() => setActiveTeacherCard(activeTeacherCard === 3 ? null : 3)}>
-                <div className="relative h-48 w-full bg-slate-800 overflow-visible">
-                  <Image
-                    src="/merged-performance.png"
-                    alt="Class Analysis"
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 20vw"
-                    className={`object-contain p-2 transition-all duration-500 ease-in-out ${activeTeacherCard === 3 ? 'scale-[2.5] z-50 shadow-2xl rounded-lg' : ''}`}
-                  />
-                </div>
-                  <div className={`absolute top-[280px] left-1/2 transform -translate-x-1/2 bg-gradient-to-br from-blue-600/95 to-purple-600/95 text-white px-6 py-4 rounded-lg shadow-2xl transition-all duration-500 z-[60] min-w-[300px] backdrop-blur-sm ${activeTeacherCard === 3 ? 'opacity-100' : 'opacity-0'}`}>
-                    <h4 className="font-bold text-lg mb-2 text-center">Class Analysis</h4>
-                    <p className="text-white/90 text-sm text-center">View chapter and topic-wise performance of the entire class.</p>
-                  </div>
-                <div className="p-3 text-center">
-                  <h4 className="text-lg font-bold text-gray-900 mb-1">Class Analysis</h4>
-                  <p className="text-sm text-gray-600">View chapter and topic-wise performance of the entire class.</p>
-                </div>
-              </Card>
-              
-              <Card hover glow delay={0.4} className="overflow-visible p-0 group relative cursor-pointer" onClick={() => setActiveTeacherCard(activeTeacherCard === 4 ? null : 4)}>
-                <div className="relative h-48 w-full bg-slate-800 overflow-visible">
-                  <Image
-                    src="/merged-performance-analysis.png"
-                    alt="Student Analysis"
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 20vw"
-                    className={`object-contain p-2 transition-all duration-500 ease-in-out ${activeTeacherCard === 4 ? 'scale-[2.5] z-50 shadow-2xl rounded-lg' : ''}`}
-                  />
-                </div>
-                  <div className={`absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-gradient-to-br from-blue-600/95 to-purple-600/95 text-white px-6 py-4 rounded-lg shadow-2xl transition-all duration-500 z-[60] min-w-[300px] backdrop-blur-sm ${activeTeacherCard === 4 ? 'opacity-100' : 'opacity-0'}`}>
-                    <h4 className="font-bold text-lg mb-2 text-center">Student Analysis</h4>
-                    <p className="text-white/90 text-sm text-center">Access detailed analysis for each student including gap analysis.</p>
-                  </div>
-                <div className="p-3 text-center">
-                  <h4 className="text-lg font-bold text-gray-900 mb-1">Student Analysis</h4>
-                  <p className="text-sm text-gray-600">Access detailed analysis for each student including gap analysis.</p>
-                </div>
-              </Card>
+                <h3 className="font-semibold text-white text-sm">{subject.name}</h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========== CTA SECTION ========== */}
+      <section className="section-padding">
+        <div className="container-custom">
+          <div className="cta-gradient p-12 md:p-16 text-center relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-40 h-40 bg-blue-500/20 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 right-0 w-60 h-60 bg-purple-500/20 rounded-full blur-3xl" />
+            <div className="relative z-10">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Ready to Transform Learning?</h2>
+              <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">Join thousands of students and schools already using SmartLearners.ai</p>
+              <div className="flex flex-wrap justify-center gap-4">
+                {isParent ? (
+                  <>
+                    <Link href="/signup" className="btn-primary text-lg px-8 py-4">Get Started Free</Link>
+                    <Link href="/contact" className="btn-secondary text-lg px-8 py-4">Schedule Demo</Link>
+                  </>
+                ) : (
+                  <>
+                    <Link href="/contact" className="btn-primary text-lg px-8 py-4" style={{ background: 'linear-gradient(135deg, #a855f7, #ec4899)' }}>Schedule Demo</Link>
+                    <Link href="/schools" className="btn-secondary text-lg px-8 py-4">Learn More</Link>
+                  </>
+                )}
+              </div>
             </div>
           </div>
         </div>
       </section>
-      
-      {/* Final CTA Section */}
-      <section className="py-16 bg-gradient-to-br from-purple-600 to-pink-600 text-white">
-        <div className="container-max text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-rendering-fix leading-tight">
-              Start Your Learning Journey Today
-            </h2>
-            <p className="text-xl mb-10 max-w-3xl mx-auto leading-relaxed text-rendering-fix opacity-90">
-              Join Smart Learners.ai and experience the future of education with 
-              AI-powered personalized learning that adapts to your unique needs.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link href="/contact">
-                <Button variant="secondary" size="xl" icon={<FaArrowRight />}>
-                  Contact Us
-                </Button>
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+        </>
+      )}
     </div>
   )
 }
-
-export default Home
