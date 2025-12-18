@@ -6,8 +6,21 @@ import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useUserType } from '@/contexts/UserTypeContext'
 
-const getNavLinks = (userType: 'parent' | 'school' | null) => {
-  const baseLinks = [
+// Type definitions
+interface SubmenuItem {
+  name: string
+  href: string
+  desc: string
+}
+
+interface NavLink {
+  name: string
+  href: string
+  submenu?: SubmenuItem[]
+}
+
+const getNavLinks = (userType: 'parent' | 'school' | null): NavLink[] => {
+  const baseLinks: NavLink[] = [
     { name: 'Home', href: '/' },
     { name: 'Features', href: '/features' },
   ]
