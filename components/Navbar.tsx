@@ -80,23 +80,23 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            {/* Logo with rounded corners and subtle border */}
-            <div className="w-11 h-11 rounded-xl overflow-hidden bg-white shadow-lg shadow-blue-500/20">
-              <Image 
-                src="/logo1.png" 
-                alt="SmartLearners.ai Logo" 
-                width={44} 
-                height={44} 
-                className="w-full h-full object-contain"
+            {/* Logo - clean and prominent */}
+            <div className="h-10 w-auto rounded-xl overflow-hidden flex items-center justify-center">
+              <Image
+                src="/logo.png"
+                alt="SmartLearners.ai Logo"
+                width={40}
+                height={40}
+                className="h-10 w-auto object-contain"
                 priority
               />
             </div>
-            
+
             <div className="flex flex-col">
-              <span className="font-bold text-xl text-white">
+              <span className="text-[26px] font-bold text-white group-hover:text-blue-300 transition-colors">
                 SmartLearners<span className="text-blue-400">.ai</span>
               </span>
-              <span className="text-xs text-gray-500 -mt-1 hidden sm:block">AI-Powered Learning</span>
+              <span className="text-[10px] text-gray-500 -mt-1 hidden sm:block">AI-Powered Learning</span>
             </div>
           </Link>
 
@@ -152,16 +152,16 @@ export default function Navbar() {
             {userType && (
               <button
                 onClick={handleChangeUserType}
-                className="px-4 py-2 rounded-xl border border-white/10 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-all flex items-center gap-2"
+                className="px-3 py-1.5 rounded-lg border border-white/10 text-xs text-gray-300 hover:text-white hover:bg-white/5 transition-all flex items-center gap-1.5"
                 title="Change view"
               >
                 {userType === 'parent' ? '👨‍👩‍👧‍👦 Parent View' : '🏫 School View'}
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                 </svg>
               </button>
             )}
-            <Link href="/get-started" className="btn-primary">
+            <Link href="/get-started" className="px-5 py-2 text-sm font-semibold rounded-lg text-white transition-all bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 hover:shadow-lg hover:shadow-blue-500/25">
               Get Subscription
             </Link>
           </div>

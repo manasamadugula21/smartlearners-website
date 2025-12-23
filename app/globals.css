@@ -119,7 +119,9 @@ body {
 
 /* ========== NAVIGATION ========== */
 .nav-link {
-  @apply px-4 py-2.5 font-medium text-sm rounded-lg transition-all;
+  @apply px-4 py-2.5 rounded-lg transition-all;
+  font-size: 15px;
+  font-weight: 500;
   color: rgba(255, 255, 255, 0.7);
 }
 
@@ -151,6 +153,12 @@ select.input-dark {
   background-position: right 12px center;
   background-size: 20px;
   padding-right: 40px;
+}
+
+select.input-dark option {
+  background-color: #1e293b;
+  color: white;
+  padding: 10px;
 }
 
 .checkbox-custom {

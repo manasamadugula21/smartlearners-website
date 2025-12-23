@@ -290,9 +290,9 @@ const Features = () => {
   }
 
   return (
-    <div className="min-h-screen pt-20 bg-[#0f172a]">
+    <div className="min-h-screen bg-[#0f172a] pt-20">
       {/* Header Section */}
-      <section className="pt-8 pb-4 bg-gradient-to-br from-[#1a1f3a] to-[#0f1628]">
+      <section className="bg-gradient-to-br from-[#1a1f3a] to-[#0f1628] pt-8 pb-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center"
@@ -300,7 +300,7 @@ const Features = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl font-bold text-white mb-6">
+            <h1 className="font-bold text-white mb-6 text-5xl">
               Powerful <span className="gradient-text">Features</span>
             </h1>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
@@ -313,7 +313,7 @@ const Features = () => {
       </section>
 
       {/* Interactive Carousel Section */}
-      <section className="pt-4 pb-16 relative overflow-hidden bg-[#0f172a]">
+      <section className="relative overflow-hidden bg-[#0f172a] pt-4 pb-16">
         {/* Animated Background */}
         <div className="absolute inset-0 -z-10">
           <div className={`absolute inset-0 bg-gradient-to-br ${carouselFeatures[currentIndex].gradient} opacity-5 transition-all duration-1000`}></div>
@@ -345,7 +345,7 @@ const Features = () => {
           />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="relative">
             <AnimatePresence mode="wait">
               <motion.div
@@ -357,7 +357,7 @@ const Features = () => {
                 className="relative"
               >
                 {/* Main Card Container */}
-                <div className={`bg-gradient-to-br from-[#1a1f3a] via-[#1a1f3a] to-[#0f1628] rounded-3xl shadow-2xl p-8 lg:p-12 backdrop-blur-sm border-2 relative overflow-hidden`}
+                <div className="bg-gradient-to-br from-[#1a1f3a] via-[#1a1f3a] to-[#0f1628] rounded-3xl shadow-2xl backdrop-blur-sm border-2 relative overflow-hidden p-8 lg:p-12"
                   style={{
                     borderImage: `linear-gradient(135deg, ${
                       currentIndex === 0 ? '#10b981, #14b8a6' :
@@ -394,12 +394,12 @@ const Features = () => {
                     {/* Left Side - Text Content */}
                     <div className="space-y-5">
                       <div>
-                        <h2 className="text-4xl font-bold text-white mb-2 leading-tight">
+                        <h2 className="font-bold text-white mb-2 leading-tight text-4xl">
                           {carouselFeatures[currentIndex].title}
                         </h2>
                       </div>
 
-                      <p className="text-xl text-gray-300 leading-relaxed">
+                      <p className="text-gray-300 leading-relaxed text-xl">
                         {carouselFeatures[currentIndex].subtitle}
                       </p>
 
@@ -413,7 +413,7 @@ const Features = () => {
                             className="flex items-start gap-3"
                           >
                             <FaCheckCircle
-                              className="mt-1 flex-shrink-0"
+                              className="flex-shrink-0 mt-1"
                               style={{
                                 color: currentIndex === 0 ? '#10b981' :
                                   currentIndex === 1 ? '#8b5cf6' :
@@ -434,7 +434,7 @@ const Features = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.5 }}
-                        className={`relative p-6 rounded-xl border-l-4 shadow-md hover:shadow-xl transition-all duration-300 bg-[#0f1628]/50`}
+                        className="relative rounded-xl border-l-4 shadow-md hover:shadow-xl transition-all duration-300 bg-[#0f1628]/50 p-6"
                         style={{
                           background: `linear-gradient(135deg, ${
                             currentIndex === 0 ? 'rgba(16, 185, 129, 0.1), rgba(20, 184, 166, 0.05)' :
@@ -457,11 +457,11 @@ const Features = () => {
                         }}
                       >
                         <div className="flex items-start gap-3">
-                          <div className={`flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br ${carouselFeatures[currentIndex].gradient} flex items-center justify-center shadow-lg`}>
+                          <div className={`flex-shrink-0 rounded-lg bg-gradient-to-br ${carouselFeatures[currentIndex].gradient} flex items-center justify-center shadow-lg w-10 h-10`}>
                             <span className="text-white text-xl">💡</span>
                           </div>
                           <div>
-                            <h3 className="font-bold text-lg text-white mb-2">How it helps:</h3>
+                            <h3 className="font-bold text-white text-lg mb-2">How it helps:</h3>
                             <p className="text-gray-300 leading-relaxed">
                               {carouselFeatures[currentIndex].whyItHelps}
                             </p>
@@ -476,7 +476,7 @@ const Features = () => {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.2, duration: 0.5 }}
-                        className={`relative rounded-2xl shadow-xl p-6 border-2`}
+                        className="relative rounded-2xl shadow-xl border-2 p-6"
                         style={{
                           background: `linear-gradient(135deg, ${
                             currentIndex === 0 ? 'rgba(16, 185, 129, 0.05), rgba(20, 184, 166, 0.02)' :
@@ -609,18 +609,18 @@ const Features = () => {
             {/* Navigation Arrows */}
             <button
               onClick={prevFeature}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 lg:-translate-x-20 bg-gradient-to-r from-blue-500 to-purple-500 text-white p-4 rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 z-10 group hover:scale-110"
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 lg:-translate-x-20 bg-white/10 backdrop-blur-sm border border-white/20 text-white p-4 rounded-full shadow-lg hover:bg-white/20 hover:shadow-2xl transition-all duration-300 z-10 group"
               aria-label="Previous feature"
             >
-              <FaChevronLeft className="text-2xl group-hover:scale-110 transition-transform" />
+              <FaChevronLeft className="text-2xl group-hover:-translate-x-1 transition-transform" />
             </button>
 
             <button
               onClick={nextFeature}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 lg:translate-x-20 bg-gradient-to-r from-blue-500 to-purple-500 text-white p-4 rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 z-10 group hover:scale-110"
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 lg:translate-x-20 bg-white/10 backdrop-blur-sm border border-white/20 text-white p-4 rounded-full shadow-lg hover:bg-white/20 hover:shadow-2xl transition-all duration-300 z-10 group"
               aria-label="Next feature"
             >
-              <FaChevronRight className="text-2xl group-hover:scale-110 transition-transform" />
+              <FaChevronRight className="text-2xl group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
 
@@ -632,8 +632,8 @@ const Features = () => {
                 onClick={() => goToFeature(index)}
                 className={`transition-all duration-300 rounded-full ${
                   index === currentIndex
-                    ? 'w-12 h-3 bg-gradient-to-r from-blue-500 to-purple-500'
-                    : 'w-3 h-3 bg-gray-600 hover:bg-gray-500'
+                    ? 'w-12 h-3 bg-white/40'
+                    : 'w-3 h-3 bg-white/10 hover:bg-white/20'
                 }`}
                 aria-label={`Go to feature ${index + 1}`}
               />

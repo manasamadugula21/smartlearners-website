@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { useUserType } from '@/contexts/UserTypeContext'
 
 export default function UserTypeSelection() {
@@ -34,40 +35,36 @@ export default function UserTypeSelection() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 }}
               onClick={() => handleSelection('parent')}
-              className="glass-card p-8 md:p-12 cursor-pointer hover-lift group relative overflow-hidden"
+              className="cursor-pointer group relative overflow-hidden rounded-3xl border-2 border-cyan-500/30 hover:border-cyan-400/60 transition-all duration-300"
+              style={{ background: 'linear-gradient(135deg, #0c1929 0%, #0a1628 50%, #061020 100%)' }}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+              {/* Background glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
 
-              <div className="relative z-10">
-                <div className="w-24 h-24 mx-auto rounded-3xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-5xl mb-6 group-hover:scale-110 transition-transform">
-                  👨‍👩‍👧‍👦
+              {/* Circuit pattern overlay */}
+              <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 20% 80%, rgba(34, 211, 238, 0.1) 0%, transparent 50%)' }} />
+
+              <div className="relative z-10 p-6 md:p-8">
+                {/* Image Container */}
+                <div className="w-full h-48 md:h-56 relative mb-6 rounded-2xl overflow-hidden group-hover:scale-[1.02] transition-transform duration-300">
+                  <Image
+                    src="/parent-student.png"
+                    alt="Parent and Student"
+                    fill
+                    className="object-contain"
+                  />
                 </div>
 
-                <h2 className="text-3xl font-bold text-white mb-4 text-center">
+                <h2 className="text-2xl md:text-3xl font-bold text-white mb-2 text-center">
                   Parent / Student
                 </h2>
 
-                <p className="text-gray-400 text-center mb-8">
+                <p className="text-gray-400 text-center text-sm mb-6">
                   Individual learning path for students with personalized AI-powered education
                 </p>
 
-                <div className="space-y-3 mb-8">
-                  {[
-                    'AI-powered personalized learning',
-                    'NCERT Class 6-12 courses',
-                    'Adaptive practice questions',
-                    'Progress tracking & analytics',
-                    'Individual pricing plans'
-                  ].map((item) => (
-                    <div key={item} className="flex items-center gap-3 text-gray-300">
-                      <span className="text-blue-400 text-xl">✓</span>
-                      <span>{item}</span>
-                    </div>
-                  ))}
-                </div>
-
                 <div className="text-center">
-                  <button className="btn-primary w-full text-lg py-4">
+                  <button className="px-8 py-3 rounded-xl font-semibold text-white transition-all bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 hover:shadow-lg hover:shadow-cyan-500/25">
                     Select Parent/Student →
                   </button>
                 </div>
@@ -80,40 +77,36 @@ export default function UserTypeSelection() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3 }}
               onClick={() => handleSelection('school')}
-              className="glass-card p-8 md:p-12 cursor-pointer hover-lift group relative overflow-hidden"
+              className="cursor-pointer group relative overflow-hidden rounded-3xl border-2 border-purple-500/30 hover:border-pink-400/60 transition-all duration-300"
+              style={{ background: 'linear-gradient(135deg, #1a0a29 0%, #180828 50%, #120520 100%)' }}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+              {/* Background glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
 
-              <div className="relative z-10">
-                <div className="w-24 h-24 mx-auto rounded-3xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-5xl mb-6 group-hover:scale-110 transition-transform">
-                  🏫
+              {/* Glow pattern overlay */}
+              <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.1) 0%, transparent 50%)' }} />
+
+              <div className="relative z-10 p-6 md:p-8">
+                {/* Image Container */}
+                <div className="w-full h-48 md:h-56 relative mb-6 rounded-2xl overflow-hidden group-hover:scale-[1.02] transition-transform duration-300">
+                  <Image
+                    src="/school-management.png"
+                    alt="School Management"
+                    fill
+                    className="object-contain"
+                  />
                 </div>
 
-                <h2 className="text-3xl font-bold text-white mb-4 text-center">
+                <h2 className="text-2xl md:text-3xl font-bold text-white mb-2 text-center">
                   School Management
                 </h2>
 
-                <p className="text-gray-400 text-center mb-8">
+                <p className="text-gray-400 text-center text-sm mb-6">
                   Comprehensive exam analysis and gap assessment for educational institutions
                 </p>
 
-                <div className="space-y-3 mb-8">
-                  {[
-                    'Detailed exam performance reports',
-                    'Chapter-wise gap analysis',
-                    'Student strength & weakness mapping',
-                    'Class & section analytics',
-                    'Bulk pricing for institutions'
-                  ].map((item) => (
-                    <div key={item} className="flex items-center gap-3 text-gray-300">
-                      <span className="text-purple-400 text-xl">✓</span>
-                      <span>{item}</span>
-                    </div>
-                  ))}
-                </div>
-
                 <div className="text-center">
-                  <button className="btn-primary w-full text-lg py-4" style={{ background: 'linear-gradient(135deg, #a855f7, #ec4899)' }}>
+                  <button className="px-8 py-3 rounded-xl font-semibold text-white transition-all bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-400 hover:to-pink-400 hover:shadow-lg hover:shadow-purple-500/25">
                     Select School Management →
                   </button>
                 </div>

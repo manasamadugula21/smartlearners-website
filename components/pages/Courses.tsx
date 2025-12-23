@@ -1,12 +1,13 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 const courses = [
   {
     category: 'CBSE',
-    icon: '📚',
+    image: '/course-cbse.png',
     color: '#3b82f6',
     items: [
       { name: 'Class 6', subjects: 'Mathematics, Science, English', price: 500 },
@@ -20,7 +21,7 @@ const courses = [
   },
   {
     category: 'CBSE + JEE Foundation',
-    icon: '🎯',
+    image: '/course-jee-foundation.png',
     color: '#a855f7',
     items: [
       { name: 'Class 8 Foundation', price: '600', subjects: 'Mathematics' },
@@ -30,7 +31,7 @@ const courses = [
   },
   {
     category: 'JEE Mains',
-    icon: '🚀',
+    image: '/course-jee-mains.png',
     color: '#f59e0b',
     items: [
        { name: 'Class 11 & 12 JEE Mains', price: '800', subjects: 'Mathematics' },
@@ -38,7 +39,7 @@ const courses = [
   },
   {
     category: 'JEE Advanced',
-    icon: '🏆',
+    image: '/course-jee-advanced.png',
     color: '#ef4444',
     items: [
       { name: 'Class 11 & 12 JEE Advanced', price: '1000', subjects: 'Mathematics' },
@@ -165,11 +166,17 @@ export default function Courses() {
               >
                 {/* Category Header */}
                 <div className="flex items-center gap-4 mb-6">
-                  <div 
-                    className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl"
-                    style={{ background: `${category.color}20` }}
+                  <div
+                    className="w-16 h-16 rounded-2xl overflow-hidden flex-shrink-0"
+                    style={{ background: `${category.color}15` }}
                   >
-                    {category.icon}
+                    <Image
+                      src={category.image}
+                      alt={category.category}
+                      width={64}
+                      height={64}
+                      className="w-full h-full object-contain p-1"
+                    />
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold text-white">{category.category}</h3>
