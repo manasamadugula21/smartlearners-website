@@ -30,10 +30,11 @@ const GetStarted = () => {
   })
 
   const courses = [
-    { value: 'ncert-6-10', label: 'NCERT (Classes 6-10) - ₹500/month', price: 500 },
-    { value: 'ncert-11-12', label: 'NCERT (Classes 11-12) - ₹600/month', price: 600 },
-    { value: 'iit-foundation', label: 'NCERT + IIT Foundation - ₹800/month', price: 800 },
-    { value: 'jee-mains', label: 'JEE Mains - ₹1000/month', price: 1000 }
+    { value: 'cbse-6-10', label: 'CBSE Class 6-10 - ₹200/month', price: 200 },
+    { value: 'cbse-11-12', label: 'CBSE Class 11-12 - ₹300/month', price: 300 },
+    { value: 'cbse-jee-foundation', label: 'CBSE+ JEE Foundation (Class 8-10) - ₹500/month', price: 500 },
+    { value: 'jee-mains', label: 'JEE Mains (Class 11-12) - ₹800/month', price: 800 },
+    { value: 'jee-advanced', label: 'JEE Advanced (Class 11-12) - ₹1000/month', price: 1000 }
   ]
 
   const getSelectedCoursePrice = () => {
