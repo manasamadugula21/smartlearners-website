@@ -6,7 +6,15 @@
       "Bash(npx tsc:*)",
       "Bash(npm run build:*)",
       "Bash(tasklist:*)",
-      "Bash(findstr:*)"
+      "Bash(findstr:*)",
+      "Bash(npm run dev:*)",
+      "Bash(if exist \"d:\\\\website\\\\Smartlearners\\\\.next\" rmdir /s /q \"d:\\\\website\\\\Smartlearners\\\\.next\")",
+      "Bash(dir:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git pull:*)",
+      "Bash(git stash:*)"
     ]
   }
 }
