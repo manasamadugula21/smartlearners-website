@@ -18,7 +18,7 @@ const contactInfo = [
     title: 'Call Us',
     desc: 'Mon-Sat, 9am-6pm IST',
     value: '+91 9963885782',
-    href: 'tel:+911234567890',
+    href: 'tel:+919963885782',
     color: '#c69decff'
   },
   {
@@ -328,14 +328,14 @@ export default function Contact() {
                       <p className="text-blue-400 text-sm">info@smartlearners.ai</p>
                     </div>
                   </a>
-                  <a href="https://wa.me/911234567890" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
+                  <a href="https://wa.me/919963885782" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
                     <div className="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center text-xl">💬</div>
                     <div>
                       <p className="text-white font-medium">WhatsApp Support</p>
                       <p className="text-green-400 text-sm">Chat with us now</p>
                     </div>
                   </a>
-                  <a href="tel:+911234567890" className="flex items-center gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
+                  <a href="tel:+919963885782" className="flex items-center gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
                     <div className="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center text-xl">📞</div>
                     <div>
                       <p className="text-white font-medium">Phone Support</p>

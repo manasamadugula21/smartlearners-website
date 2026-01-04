@@ -91,7 +91,7 @@ export default function Footer() {
               <a href="mailto:info@smartlearners.ai" className="flex items-center gap-3 text-gray-400 hover:text-blue-400 transition-colors">
                 <span>📧</span> info@smartlearners.ai
               </a>
-              <a href="tel:+911234567890" className="flex items-center gap-3 text-gray-400 hover:text-blue-400 transition-colors">
+              <a href="tel:+919963885782" className="flex items-center gap-3 text-gray-400 hover:text-blue-400 transition-colors">
                 <span>📞</span> +91 9963885782
               </a>
               <p className="flex items-start gap-3 text-gray-400">

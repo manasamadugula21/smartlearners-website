@@ -11,7 +11,7 @@ const howItWorks = [
     desc: 'Teacher uploads the question paper with marking scheme and correct answers.',
     icon: '📄',
     color: '#3b82f6',
-    image: '/schools/upload-question.png'
+    image: '/upload-question.png'
   },
   {
     step: '02',
@@ -19,7 +19,7 @@ const howItWorks = [
     desc: 'Upload bundled scanned answer sheets of all students in one go.',
     icon: '📚',
     color: '#a855f7',
-    image: '/schools/upload-answers.png'
+    image: '/upload-answers.png'
   },
   {
     step: '03',
@@ -27,7 +27,7 @@ const howItWorks = [
     desc: 'Our AI automatically corrects all answer sheets and identifies mistakes.',
     icon: '🤖',
     color: '#f472b6',
-    image: '/schools/ai-correction.png'
+    image: '/ai-corrects.png'
   },
   {
     step: '04',
@@ -35,7 +35,7 @@ const howItWorks = [
     desc: 'View student-wise and question-wise analysis with actionable insights.',
     icon: '📊',
     color: '#34d399',
-    image: '/schools/reports.png'
+    image: '/detailed-reports.png'
   },
 ]
 
@@ -57,36 +57,6 @@ const questionWiseFeatures = [
   { icon: '📉', title: 'Class Average', desc: 'Average marks per question across class' },
 ]
 
-const benefits = [
-  {
-    icon: '⏱️',
-    title: 'Save 10+ Hours',
-    desc: 'AI corrects 100 answer sheets in minutes, not hours',
-    stat: '90%',
-    statLabel: 'Time Saved'
-  },
-  {
-    icon: '✅',
-    title: 'Accurate Results',
-    desc: 'AI-powered correction with high accuracy',
-    stat: '99%',
-    statLabel: 'Accuracy'
-  },
-  {
-    icon: '📊',
-    title: 'Deep Insights',
-    desc: 'Understand exactly where students struggle',
-    stat: '100+',
-    statLabel: 'Data Points'
-  },
-  {
-    icon: '🎯',
-    title: 'Better Teaching',
-    desc: 'Focus on topics that need attention',
-    stat: '2x',
-    statLabel: 'Improvement'
-  },
-]
 
 export default function SchoolsPage() {
   return (
@@ -126,28 +96,7 @@ export default function SchoolsPage() {
         </div>
       </section>
 
-      {/* ========== BENEFITS STATS ========== */}
-      <section className="py-12 border-y border-white/5 bg-white/[0.02]">
-        <div className="container-custom">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {benefits.map((benefit, index) => (
-              <motion.div
-                key={benefit.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="text-center"
-              >
-                <div className="text-4xl mb-2">{benefit.icon}</div>
-                <div className="text-3xl font-bold gradient-text">{benefit.stat}</div>
-                <div className="text-gray-500 text-sm">{benefit.statLabel}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
+      
       {/* ========== HOW IT WORKS ========== */}
       <section className="section-padding" id="how-it-works">
         <div className="container-custom">
@@ -185,10 +134,14 @@ export default function SchoolsPage() {
                   <p className="text-gray-400 text-lg leading-relaxed">{item.desc}</p>
                 </div>
                 <div className={`${index % 2 === 1 ? 'lg:order-1' : ''}`}>
-                  <div className="glass-card p-6 aspect-video flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="text-6xl mb-4">{item.icon}</div>
-                      <p className="text-gray-500 text-sm">Illustration: {item.title}</p>
+                  <div className="glass-card p-2 overflow-hidden">
+                    <div className="relative w-full h-72 md:h-80 lg:h-96">
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        className="object-contain"
+                      />
                     </div>
                   </div>
                 </div>
@@ -516,8 +469,8 @@ export default function SchoolsPage() {
                 <Link href="/contact" className="btn-primary text-lg px-8 py-4" style={{ background: 'linear-gradient(135deg, #a855f7, #ec4899)' }}>
                   Schedule Free Demo
                 </Link>
-                <a href="tel:+911234567890" className="btn-secondary text-lg px-8 py-4">
-                  📞 Call: +91 123 456 7890
+                <a href="tel:+919963885782" className="btn-secondary text-lg px-8 py-4">
+                  📞 Call: +91 9963885782
                 </a>
               </div>
             </div>

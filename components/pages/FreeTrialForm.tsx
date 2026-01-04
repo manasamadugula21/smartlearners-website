@@ -2,8 +2,6 @@
 
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import Card from '@/components/Card'
-import Button from '@/components/Button'
 import { FaUser, FaArrowRight, FaEye, FaEyeSlash } from 'react-icons/fa'
 import toast, { Toaster } from 'react-hot-toast'
 
@@ -193,17 +191,12 @@ const FreeTrialForm = () => {
           },
         }}
       />
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-cyan-50">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(59,130,246,0.3),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(14,165,233,0.3),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,219,255,0.2),transparent_50%)]" />
+      {/* Floating background - matching site theme */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: -1 }}>
+        <div className="absolute rounded-full" style={{ width: 400, height: 400, background: '#3b82f6', top: '10%', left: '-10%', filter: 'blur(80px)', opacity: 0.3 }} />
+        <div className="absolute rounded-full" style={{ width: 300, height: 300, background: '#a855f7', top: '60%', right: '-5%', filter: 'blur(80px)', opacity: 0.3 }} />
+        <div className="absolute rounded-full" style={{ width: 250, height: 250, background: '#f472b6', bottom: '10%', left: '30%', filter: 'blur(80px)', opacity: 0.3 }} />
       </div>
-
-      {/* Floating shapes for visual interest */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-blue-300 rounded-full filter blur-3xl opacity-20 animate-pulse" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-sky-300 rounded-full filter blur-3xl opacity-20 animate-pulse" style={{ animationDelay: '2s' }} />
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-300 rounded-full filter blur-3xl opacity-10 animate-pulse" style={{ animationDelay: '4s' }} />
 
       <div className="max-w-4xl mx-auto px-4 py-12 relative z-10">
         <motion.div
@@ -211,26 +204,26 @@ const FreeTrialForm = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-5xl font-bold text-center mb-8">
-            Start Your <span className="bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent animate-gradient">Free Trial</span>
+          <h1 className="text-4xl md:text-5xl font-bold text-center mb-4 text-white">
+            Start Your <span className="gradient-text">Free Trial</span>
           </h1>
-          <p className="text-center text-gray-600 mb-8 text-lg">
+          <p className="text-center text-gray-400 mb-8 text-lg">
             Experience Smart Learners AI-powered platform with a free trial - no payment required!
           </p>
 
-          <Card className="p-8 bg-white/90 backdrop-blur-lg shadow-2xl border border-white/50">
+          <div className="glass-card p-8">
             <div className="flex items-center justify-center mb-6">
-              <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-sky-500 to-blue-600 text-white shadow-lg">
+              <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg">
                 <FaUser />
               </div>
               <div className="ml-3">
-                <h2 className="text-2xl font-bold bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent">Create Your Account</h2>
+                <h2 className="text-2xl font-bold text-white">Create Your Account</h2>
               </div>
             </div>
 
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-sm font-semibold text-gray-300 mb-2">
                   Full Name *
                 </label>
                 <input
@@ -238,14 +231,14 @@ const FreeTrialForm = () => {
                   name="fullName"
                   value={formData.fullName}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gradient-to-r from-blue-50/50 to-sky-50/50 backdrop-blur-sm transition-all duration-200 hover:from-blue-50 hover:to-sky-50"
+                  className="w-full px-4 py-3 border border-white/10 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white/5 text-white placeholder-gray-500 transition-all duration-200"
                   placeholder="Enter your full name"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-sm font-semibold text-gray-300 mb-2">
                   Roll Number *
                 </label>
                 <input
@@ -253,14 +246,14 @@ const FreeTrialForm = () => {
                   name="rollNumber"
                   value={formData.rollNumber}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gradient-to-r from-blue-50/50 to-sky-50/50 backdrop-blur-sm transition-all duration-200 hover:from-blue-50 hover:to-sky-50"
+                  className="w-full px-4 py-3 border border-white/10 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white/5 text-white placeholder-gray-500 transition-all duration-200"
                   placeholder="Enter your roll number"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-sm font-semibold text-gray-300 mb-2">
                   School Name
                 </label>
                 <input
@@ -268,32 +261,32 @@ const FreeTrialForm = () => {
                   name="schoolName"
                   value={formData.schoolName}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gradient-to-r from-blue-50/50 to-sky-50/50 backdrop-blur-sm transition-all duration-200 hover:from-blue-50 hover:to-sky-50"
+                  className="w-full px-4 py-3 border border-white/10 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white/5 text-white placeholder-gray-500 transition-all duration-200"
                   placeholder="Enter your school name"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-sm font-semibold text-gray-300 mb-2">
                   Class Name
                 </label>
                 <select
                   name="className"
                   value={formData.className}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gradient-to-r from-blue-50/50 to-sky-50/50 backdrop-blur-sm transition-all duration-200 hover:from-blue-50 hover:to-sky-50"
+                  className="w-full px-4 py-3 border border-white/10 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white/5 text-white transition-all duration-200"
                 >
-                  <option value="">Select Class</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
+                  <option value="" className="bg-gray-900">Select Class</option>
+                  <option value="6" className="bg-gray-900">6</option>
+                  <option value="7" className="bg-gray-900">7</option>
+                  <option value="8" className="bg-gray-900">8</option>
+                  <option value="9" className="bg-gray-900">9</option>
+                  <option value="10" className="bg-gray-900">10</option>
                 </select>
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-sm font-semibold text-gray-300 mb-2">
                   Section Name
                 </label>
                 <input
@@ -301,13 +294,13 @@ const FreeTrialForm = () => {
                   name="sectionName"
                   value={formData.sectionName}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gradient-to-r from-blue-50/50 to-sky-50/50 backdrop-blur-sm transition-all duration-200 hover:from-blue-50 hover:to-sky-50"
+                  className="w-full px-4 py-3 border border-white/10 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white/5 text-white placeholder-gray-500 transition-all duration-200"
                   placeholder="Enter your section (e.g., A, B, C)"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-sm font-semibold text-gray-300 mb-2">
                   WhatsApp Mobile Number *
                 </label>
                 <input
@@ -315,7 +308,7 @@ const FreeTrialForm = () => {
                   name="whatsappNumber"
                   value={formData.whatsappNumber}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gradient-to-r from-blue-50/50 to-sky-50/50 backdrop-blur-sm transition-all duration-200 hover:from-blue-50 hover:to-sky-50"
+                  className="w-full px-4 py-3 border border-white/10 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white/5 text-white placeholder-gray-500 transition-all duration-200"
                   placeholder="10-digit WhatsApp number"
                   maxLength={10}
                   required
@@ -323,7 +316,7 @@ const FreeTrialForm = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-sm font-semibold text-gray-300 mb-2">
                   Email Address *
                 </label>
                 <input
@@ -331,14 +324,14 @@ const FreeTrialForm = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gradient-to-r from-blue-50/50 to-sky-50/50 backdrop-blur-sm transition-all duration-200 hover:from-blue-50 hover:to-sky-50"
+                  className="w-full px-4 py-3 border border-white/10 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white/5 text-white placeholder-gray-500 transition-all duration-200"
                   placeholder="email@example.com"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-sm font-semibold text-gray-300 mb-2">
                   Username *
                 </label>
                 <input
@@ -346,14 +339,14 @@ const FreeTrialForm = () => {
                   name="username"
                   value={formData.username}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gradient-to-r from-blue-50/50 to-sky-50/50 backdrop-blur-sm transition-all duration-200 hover:from-blue-50 hover:to-sky-50"
+                  className="w-full px-4 py-3 border border-white/10 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white/5 text-white placeholder-gray-500 transition-all duration-200"
                   placeholder="Choose a username"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-sm font-semibold text-gray-300 mb-2">
                   Password *
                 </label>
                 <div className="relative">
@@ -362,14 +355,14 @@ const FreeTrialForm = () => {
                     name="password"
                     value={formData.password}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 pr-12 border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gradient-to-r from-blue-50/50 to-sky-50/50 backdrop-blur-sm transition-all duration-200 hover:from-blue-50 hover:to-sky-50"
+                    className="w-full px-4 py-3 pr-12 border border-white/10 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white/5 text-white placeholder-gray-500 transition-all duration-200"
                     placeholder="Minimum 8 characters"
                     required
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white focus:outline-none"
                   >
                     {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
                   </button>
@@ -378,15 +371,15 @@ const FreeTrialForm = () => {
             </div>
 
             <div className="flex justify-end mt-8">
-              <Button
+              <button
                 onClick={handleSubmit}
-                className="flex items-center bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 shadow-lg transform hover:scale-105 transition-all duration-300"
+                className="btn-primary flex items-center text-lg px-8 py-3"
               >
                 Start Free Trial
                 <FaArrowRight className="ml-2" />
-              </Button>
+              </button>
             </div>
-          </Card>
+          </div>
         </motion.div>
       </div>
     </div>

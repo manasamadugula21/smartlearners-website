@@ -3,125 +3,126 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 
-// 7 Powerful Features for Students
+// 7 Powerful Features for Students - SIMPLE ENGLISH, BENEFIT FOCUSED
 const powerfulFeatures = [
   {
     number: '1️⃣',
     title: 'AI SOLUTION',
-    subtitle: 'Step-by-Step Exam Format',
+    subtitle: 'Get Full Marks in Every Answer',
     icon: '📝',
     color: '#3b82f6',
     points: [
-      'Complete solutions in CBSE exam style',
-      'Each step explained (why this formula?)',
-      'Marks distribution shown',
-      'Learn HOW to write for maximum marks',
+      'See how to write perfect answers step by step',
+      'Learn what the examiner wants to see',
+      'No more losing marks for missing steps',
+      'Write like a topper writes',
     ],
-    result: 'No more "I know answer but can\'t write properly"'
+    result: 'You know it? Now you will score it too.'
   },
   {
     number: '2️⃣',
     title: 'CONCEPTS REQUIRED',
-    subtitle: 'Understand Before You Solve',
+    subtitle: 'Understand First, Then Solve',
     icon: '💡',
     color: '#a855f7',
     points: [
-      'Simple concept explanation',
-      'Real-life examples',
-      'Formula breakdown',
-      'Video explanation (3-5 mins)',
+      'Hard topics made easy to understand',
+      'Real examples from daily life',
+      'Short videos (3-5 mins) explain everything',
+      'Learn once, remember forever',
     ],
-    result: 'No blind solving. Full clarity.'
+    result: 'No more rote learning. Real understanding.'
   },
   {
     number: '3️⃣',
     title: 'AI CORRECTION',
-    subtitle: 'Most Powerful Feature',
+    subtitle: 'Best Feature',
     icon: '⭐',
     color: '#f59e0b',
     isHighlight: true,
     points: [
-      'Exact line where you went wrong',
-      'Which concept you misunderstood',
-      'Why it\'s wrong',
-      'Correct method step-by-step',
-      'How to avoid repeating',
+      'AI shows exactly where you made a mistake',
+      'Tells you which concept you got wrong',
+      'Shows the right way to solve it',
+      'Helps you never repeat the same mistake',
+      'Your marks go up by 15-20%',
     ],
-    result: 'Learn from EVERY mistake. Marks improve.'
+    result: 'Same mistakes will not happen again. Ever.'
   },
   {
     number: '4️⃣',
     title: '24/7 AI CHATBOT',
-    subtitle: 'Your Personal Tutor',
+    subtitle: 'Ask Doubts Anytime',
     icon: '🤖',
     color: '#22c55e',
+    isHighlight: true,
     points: [
-      'Ask doubts anytime (even 2 AM)',
-      'Explains concepts differently if you don\'t get it',
-      'Knows YOUR weak areas',
-      'Suggests what to study next',
+      'Got a doubt at night? Ask AI anytime',
+      'AI explains in simple words you understand',
+      'Ask any question - no one will judge you',
+      'Get answers in seconds, not hours',
     ],
-    result: 'Never stuck. Always moving forward.'
+    result: 'Never get stuck on any problem again.'
   },
   {
     number: '5️⃣',
     title: 'PERFORMANCE ANALYSIS',
-    subtitle: 'Know Exactly Where You Stand',
+    subtitle: 'Know Your Weak Points',
     icon: '📊',
     color: '#ec4899',
     points: [
-      'Chapter-wise performance (85%, 60%, 92%)',
-      'Strong concepts vs weak concepts',
-      'Mistake patterns (formula errors? missing units?)',
-      'Improvement tracking (Last week: 65% → This week: 78%)',
+      'See which chapters need more practice',
+      'Don\'t waste time on what you already know',
+      'Track your progress every week',
+      'Find out why you keep losing marks',
     ],
-    result: 'No guessing. Clear data on what to fix.'
+    result: 'Study less time. Get better marks.'
   },
   {
     number: '6️⃣',
     title: 'EXAM GUIDE',
-    subtitle: '1 Week Before Exam Plan',
+    subtitle: '7 Days to Exam? No Problem!',
     icon: '🎯',
     color: '#ef4444',
     isHighlight: true,
     examPlan: [
-      { day: 'Day 1', task: 'Test on weak chapters' },
-      { day: 'Day 2-5', task: '30-min daily remedial (focus ONLY on weak concepts)' },
-      { day: 'Day 6', task: 'Confidence practice (easy wins)' },
-      { day: 'Day 7', task: 'Full revision + exam tips' },
+      { day: 'Day 1', task: 'Find your weak chapters' },
+      { day: 'Day 2-5', task: '30 mins daily - practice only weak topics' },
+      { day: 'Day 6', task: 'Easy questions to build confidence' },
+      { day: 'Day 7', task: 'Quick revision + exam tips' },
     ],
-    result: 'Confidence 60% → 75% → 85% → 99% ✅'
+    result: 'Go to exam with full confidence.'
   },
   {
     number: '7️⃣',
     title: 'PARENT UPDATES',
-    subtitle: 'They See Your Progress',
+    subtitle: 'Parents Stay Happy',
     icon: '📱',
     color: '#25D366',
     points: [
-      'Weekly performance summary',
-      'Weak areas identified',
-      'Exam readiness score',
-      'Daily study time',
+      'Parents can see your hard work',
+      'No more "Did you study?" questions',
+      'Show them real proof of your progress',
+      'They support you more, nag you less',
     ],
-    result: 'Less "Did you study?" More trust. Better support.'
+    result: 'Study peacefully. Parents trust you.'
   },
 ]
 
 // Student Daily Routine
 const dailyRoutine = {
-  morning: { time: '10 mins', task: 'Check AI\'s topic suggestion → Watch 1 concept video' },
-  evening: { time: '30-40 mins', task: 'Read concept → Solve 5 questions → Upload answers → AI correction → Fix mistakes → Ask doubts' },
-  weekend: { task: 'Check weak chapters → Practice targeted questions' },
-  examWeek: { task: 'Follow 7-day AI plan → Confidence 60% → 99%' },
+  morning: { time: '10 mins', task: 'Watch 1 short video on today\'s topic' },
+  evening: { time: '30-40 mins', task: 'Read topic → Solve 5 questions → AI checks your answers → Fix mistakes → Ask doubts' },
+  weekend: { task: 'Practice weak chapters with extra questions' },
+  examWeek: { task: 'Follow 7-day plan → Feel ready for exam' },
 }
 
 // Motivational Quotes
 const motivationalQuotes = [
-  'Marks don\'t improve by studying MORE. They improve when mistakes STOP repeating.',
-  'Confidence comes from clarity, not memorization.',
-  'Every mistake teaches something. Don\'t ignore it.',
-  '60% confidence → 99% in 7 days. Yes, possible.',
+  'Studying more hours doesn\'t help. Fixing your mistakes does.',
+  'When you understand, you feel confident. When you just memorize, you feel scared.',
+  'Every mistake is a chance to learn. Don\'t skip it.',
+  'In just 7 days, you can go from scared to confident.',
 ]
 
 export default function StudentsPage() {
@@ -147,14 +148,14 @@ export default function StudentsPage() {
             </motion.h1>
 
             <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-xl text-gray-400 mb-4 max-w-3xl mx-auto">
-              Everything you need to crack exams — in ONE place.
+              All you need to do well in exams — in ONE place.
             </motion.p>
             <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }} className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-              No confusion. No panic. Just clarity. 🎯
+              No confusion. No fear. Just clear understanding. 🎯
             </motion.p>
 
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="flex flex-wrap justify-center gap-4">
-              <Link href="/free-trial" className="btn-primary text-lg px-8 py-4">Start Free Trial - 7 Days →</Link>
+              <Link href="/free-trial" className="btn-primary text-lg px-8 py-4">Start Free Trial - 1 Month →</Link>
               <Link href="#features" className="btn-secondary text-lg px-8 py-4">See 7 Features</Link>
             </motion.div>
           </div>
@@ -170,7 +171,7 @@ export default function StudentsPage() {
               🔥 7 POWERFUL FEATURES
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-              Everything You Need to <span className="gradient-text">Crack Exams</span>
+              Everything You Need to <span className="gradient-text">Do Well in Exams</span>
             </h2>
           </div>
 
@@ -203,34 +204,31 @@ export default function StudentsPage() {
                   </div>
                 </div>
 
+                {/* Result - Highlighted Benefit at Top */}
+                <div className="mb-4 p-4 rounded-xl border-2 text-base font-semibold bg-blue-500/20 border-blue-500/50">
+                  <span className="text-lg">🎯</span> <span className="text-white">Result:</span> <span className="text-blue-400">{feature.result}</span>
+                </div>
+
                 {/* Points or Exam Plan */}
                 {feature.examPlan ? (
-                  <div className="space-y-2 mb-4">
+                  <div className="space-y-2">
                     {feature.examPlan.map((item, i) => (
                       <div key={i} className="flex items-center gap-3 p-3 rounded-xl bg-white/5">
                         <span className="text-blue-400 font-bold min-w-[70px]">📅 {item.day}</span>
-                        <span className="text-gray-300 text-sm">{item.task}</span>
+                        <span className="text-white">{item.task}</span>
                       </div>
                     ))}
                   </div>
                 ) : feature.points && (
-                  <div className="grid sm:grid-cols-2 gap-2 mb-4">
+                  <div className="grid sm:grid-cols-2 gap-3">
                     {feature.points.map((point, i) => (
-                      <div key={i} className="flex items-start gap-2 text-gray-300 text-sm">
-                        <span style={{ color: feature.color }}>✅</span>
+                      <div key={i} className="flex items-start gap-2 text-white">
+                        <span className="text-blue-400">✅</span>
                         <span>{point}</span>
                       </div>
                     ))}
                   </div>
                 )}
-
-                {/* Result */}
-                <div
-                  className="inline-block px-4 py-2 rounded-xl text-sm font-medium"
-                  style={{ background: `${feature.color}15`, color: feature.color }}
-                >
-                  → Result: {feature.result}
-                </div>
               </motion.div>
             ))}
           </div>
@@ -319,27 +317,27 @@ export default function StudentsPage() {
         <div className="container-custom">
           <div className="glass-card p-8 md:p-12 text-center bg-gradient-to-br from-blue-900/20 to-purple-900/20 border-blue-500/20 max-w-4xl mx-auto">
             <div className="text-4xl mb-4">🎯</div>
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">Final Message</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">One Last Thing...</h2>
             <p className="text-2xl text-gray-300 mb-6">
-              &quot;You&apos;re Not Weak. You Just Didn&apos;t See the Mistake.&quot;
+              &quot;You are not weak. You just didn&apos;t know where you went wrong.&quot;
             </p>
             <div className="max-w-xl mx-auto mb-8 space-y-2 text-left">
-              <p className="text-gray-300">✅ You understand concepts <span className="text-blue-400 font-semibold">clearly</span></p>
-              <p className="text-gray-300">✅ You correct mistakes <span className="text-blue-400 font-semibold">immediately</span></p>
-              <p className="text-gray-300">✅ You practice <span className="text-blue-400 font-semibold">smartly</span> (not randomly)</p>
-              <p className="text-gray-300">✅ You track progress <span className="text-blue-400 font-semibold">honestly</span></p>
-              <p className="text-gray-300">✅ You walk into exams with <span className="text-green-400 font-semibold">99% confidence</span></p>
+              <p className="text-gray-300">✅ You will understand topics <span className="text-blue-400 font-semibold">clearly</span></p>
+              <p className="text-gray-300">✅ You will fix mistakes <span className="text-blue-400 font-semibold">right away</span></p>
+              <p className="text-gray-300">✅ You will practice the <span className="text-blue-400 font-semibold">right way</span></p>
+              <p className="text-gray-300">✅ You will see your <span className="text-blue-400 font-semibold">progress every week</span></p>
+              <p className="text-gray-300">✅ You will go to exams feeling <span className="text-green-400 font-semibold">fully ready</span></p>
             </div>
             <p className="text-lg text-gray-400 mb-8">
-              When you know <span className="text-white font-semibold">WHAT</span>, <span className="text-white font-semibold">HOW</span>, and <span className="text-white font-semibold">WHY</span> to write —<br />
-              <span className="text-green-400 font-semibold">Marks follow automatically. 📈</span>
+              When you know <span className="text-white font-semibold">WHAT</span> to write, <span className="text-white font-semibold">HOW</span> to write it, and <span className="text-white font-semibold">WHY</span> it is correct —<br />
+              <span className="text-green-400 font-semibold">Good marks will come. 📈</span>
             </p>
-            <Link href="/free-trial" className="btn-primary text-lg px-8 py-4">Start Free Trial - 7 Days →</Link>
+            <Link href="/free-trial" className="btn-primary text-lg px-8 py-4">Start Free Trial - 1 Month →</Link>
             <p className="text-sm text-gray-500 mt-4">
-              ✅ No credit card • ✅ All features unlocked • ✅ Cancel anytime
+              ✅ No credit card needed • ✅ Use all features • ✅ Stop anytime
             </p>
             <p className="text-sm text-green-400 mt-2 font-medium">
-              Your exam success starts today. 🚀
+              Start your journey to better marks today. 🚀
             </p>
           </div>
         </div>
